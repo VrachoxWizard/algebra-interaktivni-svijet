@@ -221,21 +221,21 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen px-4 py-4 text-[var(--ink)] sm:px-6 sm:py-6 lg:px-8">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-5">
-        <header className="grid gap-5 border-b border-[var(--line)] pb-5 lg:grid-cols-[1.08fr_0.92fr]">
+    <main className="min-h-screen overflow-x-hidden px-3 py-3 text-[var(--ink)] sm:px-6 sm:py-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 sm:gap-5">
+        <header className="grid gap-5 border-b border-[var(--line)] pb-5 xl:grid-cols-[1.08fr_0.92fr]">
           <section className="flex flex-col justify-between gap-5">
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div>
                 <p className="eyebrow text-[var(--algebra)]">
                   Algebra course trainer
                 </p>
-                <h1 className="mt-2 max-w-3xl text-[2.35rem] font-black leading-[0.98] text-[#202124] sm:text-5xl lg:text-[3.45rem]">
+                <h1 className="fluid-title mt-2 max-w-3xl font-black leading-[0.98] text-[#202124]">
                   IT administracija kroz misije, prijave i vremenske testove
                 </h1>
               </div>
               <a
-                className="command-button px-3 py-2 text-sm"
+                className="command-button w-full px-3 py-2 text-sm sm:w-auto"
                 href={officialProgram.sourceUrl}
                 rel="noreferrer"
                 target="_blank"
@@ -296,7 +296,7 @@ export default function Home() {
           </aside>
         </header>
 
-        <nav aria-label="Načini učenja" className="grid gap-2 sm:grid-cols-2 lg:grid-cols-6">
+        <nav aria-label="Načini učenja" className="grid gap-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6">
           {(Object.keys(modeMeta) as Mode[]).map((modeKey) => {
             const Icon = modeMeta[modeKey].icon;
             const selected = mode === modeKey;
@@ -332,7 +332,7 @@ export default function Home() {
         <AnimatePresence mode="wait">
           <motion.section
             animate={{ opacity: 1, y: 0 }}
-            className="min-h-[560px]"
+            className="min-h-[420px] sm:min-h-[500px]"
             exit={{ opacity: 0, y: 12 }}
             initial={{ opacity: 0, y: 12 }}
             key={mode}
@@ -424,8 +424,8 @@ function LearnMode({
   }
 
   return (
-    <div className="grid gap-5 lg:grid-cols-[0.86fr_1.14fr]">
-      <section className="soft-panel max-h-[720px] overflow-auto">
+    <div className="grid gap-5 xl:grid-cols-[0.86fr_1.14fr]">
+      <section className="soft-panel overflow-hidden xl:max-h-[720px] xl:overflow-auto">
         <div className="sticky top-0 z-10 border-b border-[var(--line)] bg-[var(--paper)] p-4">
           <p className="eyebrow text-[var(--muted)]">Sekcije</p>
           <p className="mt-1 text-sm font-semibold text-[var(--muted)]">Sadržaj je organiziran prema PDF priručniku.</p>
@@ -463,13 +463,13 @@ function LearnMode({
         </div>
       </section>
 
-      <section className="console-panel p-5 sm:p-6">
+      <section className="console-panel p-4 sm:p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="eyebrow" style={{ color: chapterColors[chapterIndex] }}>
               {active.chapter} · {active.pages}
             </p>
-            <h2 className="mt-2 text-3xl font-black leading-tight sm:text-4xl">{active.title}</h2>
+            <h2 className="panel-title mt-2 font-black leading-tight">{active.title}</h2>
           </div>
           <div className="flex h-16 w-16 items-center justify-center text-white" style={{ background: chapterColors[chapterIndex] }}>
             <Icon size={32} />
@@ -506,7 +506,7 @@ function LearnMode({
           </div>
         </div>
 
-        <div className="mt-5 grid gap-4 lg:grid-cols-3">
+        <div className="mt-5 grid gap-4 md:grid-cols-3">
           <div className="micro-panel p-4">
             <p className="eyebrow text-[var(--muted)]">Što moraš znati</p>
             <ul className="mt-3 grid gap-2 text-sm font-semibold leading-6">
@@ -616,14 +616,14 @@ function MissionQuizMode({
   if (complete) {
     const passed = score >= passScore;
     return (
-      <section className="console-panel p-6 sm:p-7">
+      <section className="console-panel p-5 sm:p-7">
         <div className={`flex h-16 w-16 items-center justify-center text-white ${passed ? "bg-[var(--teal)]" : "bg-[var(--algebra)]"}`}>
           {passed ? <Award size={34} /> : <RotateCcw size={34} />}
         </div>
         <p className="eyebrow mt-5 text-[var(--muted)]">{section.title}</p>
-        <h2 className="mt-2 text-4xl font-black">{passed ? "Misija polozena" : "Ponovi teoriju"}</h2>
+        <h2 className="panel-title mt-2 font-black">{passed ? "Misija polozena" : "Ponovi teoriju"}</h2>
         <p className="mt-3 text-2xl font-black">Rezultat: {score}/{ordered.length}</p>
-        <p className="mt-2 max-w-2xl text-lg font-semibold leading-8 text-[var(--muted)]">
+        <p className="mt-2 max-w-2xl text-base font-semibold leading-7 text-[var(--muted)] sm:text-lg sm:leading-8">
           {passed
             ? awarded
               ? `Osvojeno je ${section.xp} XP.`
@@ -644,10 +644,10 @@ function MissionQuizMode({
   }
 
   return (
-    <section className="grid gap-5 lg:grid-cols-[0.72fr_1.28fr]">
+    <section className="grid gap-5 xl:grid-cols-[0.72fr_1.28fr]">
       <aside className="soft-panel p-5">
         <p className="eyebrow text-[var(--muted)]">Kviz misije</p>
-        <h2 className="mt-2 text-3xl font-black leading-tight sm:text-4xl">{section.title}</h2>
+        <h2 className="panel-title mt-2 font-black leading-tight">{section.title}</h2>
         <div className="mt-5 flex items-center justify-between text-xs font-black text-[var(--muted)]">
           <span>{index + 1}/{ordered.length}</span>
           <span>Prolaz {passScore}/8</span>
@@ -663,8 +663,8 @@ function MissionQuizMode({
         </button>
       </aside>
 
-      <article className="console-panel p-5 sm:p-6">
-        <p className="text-xl font-black leading-8">{question.prompt}</p>
+      <article className="console-panel p-4 sm:p-6">
+        <p className="question-text font-black">{question.prompt}</p>
         <div className="mt-5 grid gap-3">
           {question.answers.map((answerText, answerIndex) => {
             const isCorrect = answerIndex === question.correct;
@@ -775,10 +775,10 @@ function QuizMode({
   }
 
   return (
-    <section className="grid gap-5 lg:grid-cols-[0.72fr_1.28fr]">
+    <section className="grid gap-5 xl:grid-cols-[0.72fr_1.28fr]">
       <aside className="soft-panel p-5">
         <p className="eyebrow text-[var(--muted)]">{title}</p>
-        <h2 className="mt-2 text-3xl font-black leading-tight sm:text-4xl">Pitanje {index + 1}</h2>
+        <h2 className="panel-title mt-2 font-black leading-tight">Pitanje {index + 1}</h2>
         <div className="mt-5 flex items-center justify-between text-xs font-black text-[var(--muted)]">
           <span>{index + 1}/{ordered.length}</span>
           <span>{Math.round(((index + 1) / ordered.length) * 100)}%</span>
@@ -795,8 +795,8 @@ function QuizMode({
         </div>
       </aside>
 
-      <article className="console-panel p-5 sm:p-6">
-        <p className="text-xl font-black leading-8">{question.prompt}</p>
+      <article className="console-panel p-4 sm:p-6">
+        <p className="question-text font-black">{question.prompt}</p>
         <div className="mt-5 grid gap-3">
           {question.answers.map((answerText, answerIndex) => {
             const isCorrect = answerIndex === question.correct;
@@ -908,9 +908,9 @@ function TimedMode({ onReward }: { onReward: (points: number, correct?: boolean)
   }
 
   return (
-    <article className="console-panel p-5 sm:p-6">
+    <article className="console-panel p-4 sm:p-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h2 className="text-3xl font-black">Brzi test</h2>
+        <h2 className="panel-title font-black">Brzi test</h2>
         <div className={`border border-[#202124] px-4 py-2 text-xl font-black ${remaining <= 15 ? "bg-[var(--algebra)] text-white" : "bg-white"}`}>
           {remaining}s
         </div>
@@ -922,7 +922,7 @@ function TimedMode({ onReward }: { onReward: (points: number, correct?: boolean)
       <div className="progress-track mt-2">
         <div className="progress-fill bg-[var(--algebra)]" style={{ width: `${(index / questions.length) * 100}%` }} />
       </div>
-      <p className="mt-6 text-xl font-black leading-8">{question.prompt}</p>
+      <p className="question-text mt-6 font-black">{question.prompt}</p>
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
         {question.answers.map((answer, answerIndex) => (
           <button
@@ -966,10 +966,10 @@ function TicketMode({ onReward }: { onReward: (points: number, correct?: boolean
   }
 
   return (
-    <section className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
+    <section className="grid gap-5 xl:grid-cols-[0.8fr_1.2fr]">
       <aside className="soft-panel p-5">
         <p className="eyebrow text-[var(--muted)]">Prijava {ticketIndex + 1}</p>
-        <h2 className="mt-2 text-3xl font-black leading-tight sm:text-4xl">{ticket.title}</h2>
+        <h2 className="panel-title mt-2 font-black leading-tight">{ticket.title}</h2>
         <div className="mt-4 flex flex-wrap gap-2">
           <span className="status-chip">Korisnik: {ticket.user}</span>
           <span className={`status-chip ${ticket.severity === "P1" ? "border-[var(--algebra)] text-[var(--algebra)]" : ""}`}>
@@ -986,7 +986,7 @@ function TicketMode({ onReward }: { onReward: (points: number, correct?: boolean
         </ul>
       </aside>
 
-      <article className="console-panel p-5 sm:p-6">
+      <article className="console-panel p-4 sm:p-6">
         <p className="eyebrow text-[var(--muted)]">Odaberi najbolji prvi korak</p>
         <div className="mt-4 grid gap-3">
           {actions.map((action) => {
@@ -1053,13 +1053,13 @@ function SubnetMode({ onReward }: { onReward: (points: number, correct?: boolean
   }
 
   return (
-    <article className="console-panel p-5 sm:p-6">
+    <article className="console-panel p-4 sm:p-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="eyebrow text-[var(--muted)]">Binary lab</p>
-          <h2 className="mt-2 text-3xl font-black leading-tight sm:text-4xl">{drill.prompt}</h2>
+          <h2 className="panel-title mt-2 font-black leading-tight">{drill.prompt}</h2>
         </div>
-        <div className="bg-[#202124] px-4 py-3 font-mono text-3xl font-black text-white">{drill.value}</div>
+        <div className="w-full min-w-0 bg-[#202124] px-4 py-3 font-mono text-2xl font-black text-white sm:w-auto sm:text-3xl">{drill.value}</div>
       </div>
       <div className="mt-6 grid gap-4 md:grid-cols-[1fr_auto]">
         <label className="grid gap-2 text-sm font-black uppercase tracking-[0.12em] text-[var(--muted)]">
@@ -1077,7 +1077,7 @@ function SubnetMode({ onReward }: { onReward: (points: number, correct?: boolean
           />
         </label>
         <button
-          className="command-button self-end px-5 py-4"
+          className="command-button self-end px-5 py-4 md:w-auto"
           onClick={submit}
           type="button"
         >
@@ -1108,12 +1108,12 @@ function SubnetMode({ onReward }: { onReward: (points: number, correct?: boolean
 
 function EmptyPanel({ title, body, onReset }: { title: string; body: string; onReset: () => void }) {
   return (
-    <section className="console-panel p-6 sm:p-7">
+    <section className="console-panel p-5 sm:p-7">
       <div className="flex h-16 w-16 items-center justify-center bg-[#202124] text-white">
         <HelpCircle size={34} />
       </div>
-      <h2 className="mt-5 text-4xl font-black">{title}</h2>
-      <p className="mt-3 max-w-2xl text-lg font-semibold leading-8 text-[var(--muted)]">{body}</p>
+      <h2 className="panel-title mt-5 font-black">{title}</h2>
+      <p className="mt-3 max-w-2xl text-base font-semibold leading-7 text-[var(--muted)] sm:text-lg sm:leading-8">{body}</p>
       <button
         className="command-button mt-6 px-5 py-3"
         onClick={onReset}
@@ -1140,12 +1140,12 @@ function StartPanel({
   onStart: () => void;
 }) {
   return (
-    <section className="console-panel p-6 sm:p-7">
+    <section className="console-panel p-5 sm:p-7">
       <div className="flex h-16 w-16 items-center justify-center bg-[#202124] text-white">
         <Icon size={32} />
       </div>
-      <h2 className="mt-5 text-4xl font-black">{title}</h2>
-      <p className="mt-3 max-w-2xl text-lg font-semibold leading-8 text-[var(--muted)]">{body}</p>
+      <h2 className="panel-title mt-5 font-black">{title}</h2>
+      <p className="mt-3 max-w-2xl text-base font-semibold leading-7 text-[var(--muted)] sm:text-lg sm:leading-8">{body}</p>
       <button
         className="command-button command-button-danger mt-6 px-5 py-3"
         onClick={onStart}
@@ -1172,16 +1172,16 @@ function ResultPanel({
   compact?: boolean;
 }) {
   return (
-    <section className="console-panel p-6 sm:p-7">
+    <section className="console-panel p-5 sm:p-7">
       <div className="flex h-16 w-16 items-center justify-center bg-[var(--teal)] text-white">
         <Award size={34} />
       </div>
-      <h2 className="mt-5 text-4xl font-black">{title}</h2>
-      <p className="mt-3 text-2xl font-black">
+      <h2 className="panel-title mt-5 font-black">{title}</h2>
+      <p className="mt-3 text-xl font-black sm:text-2xl">
         Rezultat: {score} {score.includes("/") ? `(${pct}%)` : ""}
       </p>
       {!compact && (
-        <p className="mt-2 max-w-2xl text-lg font-semibold leading-8 text-[var(--muted)]">
+        <p className="mt-2 max-w-2xl text-base font-semibold leading-7 text-[var(--muted)] sm:text-lg sm:leading-8">
           {pct >= 80
             ? "Spreman si za sljedeću smjenu. Sad samo čuvaj redoslijed dijagnostike."
             : "Dobro zagrijavanje. Vrati se na misije s najnižom sigurnošću i ponovi test."}
