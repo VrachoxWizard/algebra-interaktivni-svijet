@@ -1,0 +1,219 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4f1e8;
+  --foreground: #202124;
+  --ink: #202124;
+  --muted: #645f56;
+  --muted-strong: #46413b;
+  --paper: #fffdf8;
+  --paper-warm: #faf7ee;
+  --line: #ded8cb;
+  --line-strong: #202124;
+  --algebra: #e30613;
+  --algebra-dark: #b6000b;
+  --ember: #f5a524;
+  --teal: #057a75;
+  --teal-soft: #e3f4ef;
+  --blueprint: #243b55;
+  --danger-soft: #ffe8e8;
+  --focus: #ffbf47;
+  --shadow-hard: 8px 8px 0 #202124;
+  --shadow-soft: 0 18px 40px rgba(32, 33, 36, 0.09);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    linear-gradient(90deg, rgba(32, 33, 36, 0.028) 1px, transparent 1px) 0 0 / 34px 34px,
+    linear-gradient(rgba(32, 33, 36, 0.024) 1px, transparent 1px) 0 0 / 34px 34px,
+    radial-gradient(circle at 80% 0%, rgba(227, 6, 19, 0.13), transparent 28rem),
+    radial-gradient(circle at 2% 26%, rgba(5, 122, 117, 0.08), transparent 22rem),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), "Segoe UI", system-ui, sans-serif;
+  text-rendering: geometricPrecision;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: #202124;
+  color: #fffdf8;
+}
+
+.console-panel {
+  border: 1px solid var(--line-strong);
+  background: var(--paper);
+  box-shadow: var(--shadow-hard);
+}
+
+.soft-panel {
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 92%, white);
+  box-shadow: var(--shadow-soft);
+}
+
+.micro-panel {
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 94%, white);
+}
+
+.command-button {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid var(--line-strong);
+  background: var(--line-strong);
+  color: white;
+  font-weight: 900;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.command-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--algebra);
+}
+
+.command-button:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+
+.command-button-danger {
+  background: var(--algebra);
+}
+
+.mode-tab {
+  position: relative;
+  min-height: 5.75rem;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 94%, white);
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.mode-tab:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
+}
+
+.mode-tab-active {
+  border-color: var(--line-strong);
+  background: var(--line-strong);
+  color: white;
+  box-shadow: 4px 4px 0 var(--algebra);
+}
+
+.answer-card {
+  min-height: 4rem;
+  border: 1px solid var(--line);
+  background: white;
+  transition:
+    transform 150ms ease,
+    border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+.answer-card:hover:not(:disabled) {
+  border-color: var(--line-strong);
+  background: var(--paper-warm);
+  transform: translateX(3px);
+}
+
+.progress-track {
+  height: 0.75rem;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  background: white;
+}
+
+.progress-fill {
+  height: 100%;
+  transition: width 300ms ease;
+}
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border: 1px solid var(--line);
+  background: white;
+  padding: 0.4rem 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.eyebrow {
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+  body {
+    background-size: 42px 42px, 42px 42px, auto, auto, auto;
+  }
+
+  .console-panel {
+    box-shadow: 5px 5px 0 #202124;
+  }
+
+  .mode-tab {
+    min-height: 4.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}
